@@ -1,0 +1,28 @@
+#include <cstdio>
+
+long long coef[1000];
+int n;
+
+long long solve(long long x){
+    long long ret=coef[0];
+    int i;
+    for(i=0;i<n;i++)
+        ret = ret*x + coef[i+1];
+    return ret;
+}
+
+int main(){
+    int i,k,cnt=0;
+    long long x;
+    while(scanf("%d",&n), n+1){
+        for(i=0;i<=n;i++)
+            scanf("%lld",coef+i);
+        scanf("%d",&k);
+        printf("Case %d:\n",++cnt);
+        for(i=0;i<k;i++){
+            scanf("%lld",&x);
+            printf("%lld\n",solve(x));
+        }
+    }
+    return 0;
+}
