@@ -1,0 +1,79 @@
+#include <iostream>
+#include <cstdio>
+using namespace std;
+int main() {
+	// your code goes here
+	int a[32],j,t,rightlast,win;
+	unsigned i,n,single,pair;
+	scanf("%d",&t);
+	while(t--){
+		j=0;
+		single=0;
+		pair=0;
+		rightlast=0;
+		win=0;
+		scanf("%d",&n);
+		if(n==0){
+			printf("Bob\n");
+			continue;
+		}
+		if(n==1){
+			printf("Alice\n");
+			continue;
+		}
+		else if(!(n&(n-1)))
+		{
+			printf("Bob\n");
+			continue;
+		}
+		
+		
+    	for (i = 1 << 31; i > 0; i = i / 2)
+        {
+			a[j]=(n & i)? 1: 0;
+			j++;
+		}
+		for(j=0;j<32;j++)
+		{
+			//printf("%d",a[j]);
+			if(a[j]==1){
+				single++;
+				
+			}	
+			if(a[j]==1&&a[j+1]==1){
+				pair++;
+				j++;
+			}
+		}
+		if(a[31]==1)
+			rightlast=1;
+		
+		for(i=1;i<=pair;i++)
+		{
+			if((single+pair)%2)
+			{
+				win=1;
+				break;
+			}
+			else if((single+pair-1)%2)
+			{
+				win=1;
+				break;
+			}
+		}
+		if((single-pair)>rightlast)
+		{
+			if((single-1)%2)
+				win=1;
+			
+		}
+		if(single%2)
+				win=1;
+		if(win)
+			printf("Alice\n");
+		else
+			printf("Bob\n");
+	}	
+	
+	return 0;
+}
