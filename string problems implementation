@@ -12,41 +12,35 @@ APPLY an apple a day
 LAST CASE //marks end of current case
 0 //marks EOF
 
-#include <iostream>
-#include <vector>
-#include <map>
-#include <algorithm>
-#include <sstream>
-#include <string>
-#include <cmath>
- 
-using namespace std;
-
 int main()
 {
 	int n,i;
-	string s,acr,temp;
-	stringstream ss;
-	vector<string> v;
-	map<string,bool> insig;
-	while(cin>>n&&n){
-		cout<<n<<endl;
-		
+	while(cin>>n&&n){  //checks if n=0 i.e.., EOF
+		//cout<<n<<endl;
+		map<string,bool> insig;
+		stringstream ss;
 		for(i=0;i<n;i++)
 		{
+			string s; //declare here to destroy and reallocate each time of for loop
 			cin>>s;
 			insig[s]=true;
 		}
+		string s;
+		getline(cin,s); //to get the unwanted newline after 'n'
 		while(getline(cin,s) && s.compare("LAST CASE")){
-			cout<<s<<endl;
-			ss<<s;
+	
+			istringstream ss( s ); //input stringstream os string s 
+			string acr,tempacr,temp; //have to declare here only so each time destroyed and built  
 			ss>>acr;
+			tempacr=acr;
 			for(i=0;i<acr.size();i++)
 				acr[i]=tolower(acr[i]);
+			vector<string> v; //have to declare here only otherwise residual values will be there
 			while(ss>>temp){
 				if(insig.find(temp)==insig.end())
 					v.push_back(temp);
 			}
+			ss.str(std::string()); //to reset the string stream
 		}
 	}
     return 0;
