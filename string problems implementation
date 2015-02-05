@@ -1,0 +1,53 @@
+for input 
+2
+and
+of
+ACM academy of computer makers
+RADAR radio detection and ranging
+LAST CASE
+2
+a
+an
+APPLY an apple a day
+LAST CASE //marks end of current case
+0 //marks EOF
+
+#include <iostream>
+#include <vector>
+#include <map>
+#include <algorithm>
+#include <sstream>
+#include <string>
+#include <cmath>
+ 
+using namespace std;
+
+int main()
+{
+	int n,i;
+	string s,acr,temp;
+	stringstream ss;
+	vector<string> v;
+	map<string,bool> insig;
+	while(cin>>n&&n){
+		cout<<n<<endl;
+		
+		for(i=0;i<n;i++)
+		{
+			cin>>s;
+			insig[s]=true;
+		}
+		while(getline(cin,s) && s.compare("LAST CASE")){
+			cout<<s<<endl;
+			ss<<s;
+			ss>>acr;
+			for(i=0;i<acr.size();i++)
+				acr[i]=tolower(acr[i]);
+			while(ss>>temp){
+				if(insig.find(temp)==insig.end())
+					v.push_back(temp);
+			}
+		}
+	}
+    return 0;
+}
