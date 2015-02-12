@@ -18,47 +18,7 @@ int countsubseqways(string str,string seq,int start,int end){
 	for(i=0;i<=M;i++)
 		dp[i][0]=1; //subsequence of zero length
 	for(j=1;j<=N;j++)
-		dp[0][j]=0; //suint main()
-{
-	int n,i;
-	
-	
-	
-	while(cin>>n&&n){
-		//cout<<n<<endl;
-		map<string,bool> insig;
-		stringstream ss;
-		for(i=0;i<n;i++)
-		{
-			string s;
-			cin>>s;
-			insig[s]=true;
-		}
-		string s;
-		getline(cin,s);
-		while(getline(cin,s) && s.compare("LAST CASE")){
-			//cout<<s<<endl;
-			istringstream ss( s );
-			string acr,tempacr,temp;
-			ss>>acr;
-			tempacr=acr;
-			for(i=0;i<acr.size();i++)
-				acr[i]=tolower(acr[i]);
-			vector<string> v;
-			while(ss>>temp){
-				if(insig.find(temp)==insig.end())
-					v.push_back(temp);
-			}
-			ss.str(std::string());
-			int ways=dpcalculate(v,acr);
-			if(ways==0)
-				cout<<tempacr<<" is not a valid abbreviation"<<endl;
-			else
-				cout<<tempacr<<" can be formed in "<<ways<<" ways"<<endl;
-		}
-	}
-    return 0;
-}bsequence non empty sequence empty
+		dp[0][j]=0; //subsequence non empty sequence empty
 	for(i=1;i<=M;i++){
 		for(j=1;j<=N;j++){
 			dp[i][j]=dp[i-1][j]; //ignore first string char
@@ -100,4 +60,45 @@ int dpcalculate(vector<string> &v, string acr){
 		cout<<endl;
 	}*/	
 	return dp[M][N];
+}
+int main()
+{
+	int n,i;
+	
+	
+	
+	while(cin>>n&&n){
+		//cout<<n<<endl;
+		map<string,bool> insig;
+		stringstream ss;
+		for(i=0;i<n;i++)
+		{
+			string s;
+			cin>>s;
+			insig[s]=true;
+		}
+		string s;
+		getline(cin,s);
+		while(getline(cin,s) && s.compare("LAST CASE")){
+			//cout<<s<<endl;
+			istringstream ss( s );
+			string acr,tempacr,temp;
+			ss>>acr;
+			tempacr=acr;
+			for(i=0;i<acr.size();i++)
+				acr[i]=tolower(acr[i]);
+			vector<string> v;
+			while(ss>>temp){
+				if(insig.find(temp)==insig.end())
+					v.push_back(temp);
+			}
+			ss.str(std::string());
+			int ways=dpcalculate(v,acr);
+			if(ways==0)
+				cout<<tempacr<<" is not a valid abbreviation"<<endl;
+			else
+				cout<<tempacr<<" can be formed in "<<ways<<" ways"<<endl;
+		}
+	}
+    return 0;
 }
